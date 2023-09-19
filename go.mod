@@ -10,7 +10,9 @@ require (
 require (
 	github.com/brianvoe/gofakeit/v6 v6.23.2
 	github.com/gofiber/fiber/v2 v2.49.2
+	github.com/graphql-go/graphql v0.8.1
 	github.com/redis/go-redis/v9 v9.1.0
+	github.com/timsolov/rest-query-parser v1.9.10
 	gorm.io/driver/postgres v1.5.2
 	gorm.io/gorm v1.25.4
 )
@@ -31,7 +33,6 @@ require (
 	github.com/mattn/go-runewidth v0.0.15 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
-	github.com/timsolov/rest-query-parser v1.9.10 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.50.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect

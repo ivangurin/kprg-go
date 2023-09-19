@@ -96,7 +96,7 @@ func KafkaCreateUser(enricher *enricher.Enricher, repository repository.Reposito
 
 	errors := CheckUserCreateRequest(userCreateRequest)
 
-	if len(errors) != 0 {
+	if len(errors) > 0 {
 
 		userFailedResponse := models.UserFailedResponse{
 			Name:       userCreateRequest.Name,
@@ -114,6 +114,8 @@ func KafkaCreateUser(enricher *enricher.Enricher, repository repository.Reposito
 		if err != nil {
 			return fmt.Errorf("Failed to produce FioFailed response: %w", err)
 		}
+
+		return nil
 
 	}
 

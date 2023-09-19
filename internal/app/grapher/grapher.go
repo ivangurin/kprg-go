@@ -16,7 +16,7 @@ func Start() {
 
 	godotenv.Load(".env")
 
-	grapher_port := os.Getenv("GRAPHER_PORT")
+	grapherPort := os.Getenv("GRAPHER_PORT")
 
 	// DB
 	postgresConnection := service.GetPostgresConnction()
@@ -48,9 +48,12 @@ func Start() {
 	log.Printf("Created enricher %+v\n", enricher)
 
 	// Grapher
-	grapher := grapher.NewGrapher(repository, enricher)
+	grapher, err := grapher.NewGrapher(repository, enricher)
+	if err != nil {
+		log.Fatalf("Failed to create grapher: %s\n", err)
+	}
 
-	err = grapher.Listen(grapher_port)
+	err = grapher.Listen(grapherPort)
 	if err != nil {
 		log.Fatalf("Failed to start grapher: %s\n", err)
 	}
