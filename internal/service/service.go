@@ -4,13 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"kprg/internal/enricher"
+	"kprg/internal/logger"
 	"kprg/internal/models"
 	"kprg/internal/producer"
 	"kprg/internal/repository"
 	"math/rand"
 	"os"
-
-	"log"
 
 	"github.com/brianvoe/gofakeit/v6"
 )
@@ -51,7 +50,7 @@ func GetRedisConnction() *models.Connection {
 
 }
 
-func SendRandomUser(producer *producer.Producer, topic string) {
+func SendRandomUser(logger logger.Logger, producer *producer.Producer, topic string) {
 
 	rnum := rand.Intn(10)
 
@@ -71,17 +70,17 @@ func SendRandomUser(producer *producer.Producer, topic string) {
 
 	message, err := json.Marshal(userCreateRequest)
 	if err != nil {
-		log.Printf("Failed to marshal fio: %v\n", err)
+		logger.Error(fmt.Sprintf("Failed to marshal fio: %s", err))
 		return
 	}
 
 	err = producer.Send(topic, message)
 	if err != nil {
-		log.Printf("Failed to produce message: %v\n", err)
+		logger.Error(fmt.Sprintf("Failed to produce fio: %s", err))
 		return
 	}
 
-	log.Printf("Sent message: %s\n", string(message))
+	logger.Info(fmt.Sprintf("Sent message: %s", string(message)))
 
 }
 
