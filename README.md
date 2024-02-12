@@ -1,4 +1,4 @@
-# Тестовое задание от компании Effective Mobile
+# Пример использования Kafka + Postgres + Redis + Rest API + GraphQL
 
 ## Описание
 
